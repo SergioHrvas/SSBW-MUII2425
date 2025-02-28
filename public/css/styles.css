@@ -1,0 +1,76 @@
+:root {
+  --bg: #ffffff;
+  --card-bg:  	#ff4554;
+}
+
+body {
+  background: var(--bg);
+}
+
+.box {
+
+  background: var(--card-bg);
+}
+
+
+input::placeholder {
+  color: antiquewhite;
+}
+
+.navbar {
+  background: var(--card-bg);
+}
+
+.navbar-item {
+  color: ghostwhite;
+}
+
+.navbar-item.menu:hover{
+  background-color:  	#00c3e3;
+}
+
+/* Card start*/
+.card {
+  overflow: hidden;
+  background:  	 	#989898;
+  color: var(--bg);
+}
+
+.card.large {
+  border-radius: 5px;
+}
+
+.title.no-padding {
+  margin-bottom: 0 !important;
+}
+
+.footer {
+  background: var(--card-bg);
+  color: ghostwhite;
+}
+
+.footer a{
+  color: black
+}
+
+.footer p,
+strong {
+  color: ghostwhite
+}
+
+.footer a:hover {
+  color: crimson;
+}
+
+.fa {
+  color: ghostwhite;
+  margin: 10px
+}
+
+.navbar-item.is-active {
+  background-color:  	#e60012;
+}
+
+.navbar-item.logo:hover {
+  background-color: transparent !important;
+}
