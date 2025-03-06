@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Molar de homínido (Homo s.p.)",
+    "tipo": "Hueso",
+    "descripcion": "Los investigadores detallaron que el fósil es un diente de leche, indudablemente humano, de un niño o niña de unos diez años, que corresponde al primer molar inferior izquierdo.",
+    "procedencia": "La campaña de excavaciones en el yacimiento de Barranco León, en Orce de 2002, dio lugar al descubrimiento de un diente de un homínido datado en 1,4 millones de años, lo que supone la evidencia en esta zona de la presencia humana más antigua de Europa Occidental.",
+    "img": "/image/journal/article?img_id=68246227&t=1586175988579"
+  },
+  {
+    "name": "Portacandil",
+    "tipo": "Bronce",
+    "descripcion": "Portacandil realizado en bronce con la técnica de la cera perdida. Presenta una delgada base hexagonal donde se levanta un templete de esbeltas columnitas y dobles arcos de herradura que sostienen un entablamento y con una cúpula rematada por chapitel y un vástago en el que se encastraría el candil, como puede verse en miniaturas mesopotámicas de los siglos XII y XIII. Al pie del vástago hay un disco calado en forma de ¿sello de Salomón¿ inscrito en una circunferencia.",
+    "procedencia": "Madinat Ilbira, Atarfe",
+    "img": "/image/journal/article?img_id=99064477&t=1608194272182"
+  },
+  {
+    "name": "Relieve",
+    "tipo": "Piedra caliza",
+    "descripcion": "Placa de forma rectangular con bajorrelieve de la silueta de un caballo al paso, procedente de la ciudad iberromana de Ilurco. Fue Don Manuel Gómez Moreno, quien señalaba el hallazgo de relieves de équidos en el yacimiento del Cerro de los Infantes y en el no lejano pueblo de Valderrubio. De estos lugares precisamente proceden además de esta pieza, otros relieves con representación de caballos que fueron publicadas en 1950 por Don Emeterio Cuadrado. Estas obras junto con otras 64 piezas de características similares de otras colecciones, proceden según los especialistas, del Cerro de los Infantes, pero sin conocer su localización exacta. Estas piezas fueron adquiridas a agricultores que las encontraban cada año al arar sus tierras siendo localizadas en la zona conocida como Cuesta de Velillos, entre los arroyos de Enmedio y Cerrajones. La abundancia de este tipo de piezas presupone la presencia de un santuario en la antigua ciudad de Ilurco dedicado a una divinidad protectora de los équidos. Esta pieza, por tanto, se trataría de un exvoto en agradecimiento a la divinidad.",
+    "procedencia": "Cerro de los Infantes, Pinos Puente",
+    "img": "/image/journal/article?img_id=98664130&t=1608031925664"
+  },
+  {
+    "name": "Botella",
+    "tipo": "Cerámica decorada mediante la técnica \"verde y manganeso\"",
+    "descripcion": "Botella o redoma de cuerpo panzudo sobre repié anular, al que le faltaría un cuello alto y estrecho, presumiblemente cilíndrico y estilizado. En la zona de intersección del cuello con el cuerpo presenta unas molduras horizontales y paralelas. El exterior aparece decorado con pigmentos a base de óxido de cobre y de manganeso sobre una engalba blanca, sobre la que iría una capa transparente a base de óxido de plomo, proporcionando el brillo característico del vidriado. La decoración se resuelve en el interior de tres franjas horizontales, de grosores diversos y concéntricas al eje vertical del torno. La franja superior es estrecha, va decorada con una sucesión de palmetas vegetales perfiladas en manganeso. La franja central ocupa más de la mitad del cuerpo, su desarrollo se ha dividido en cuatro grandes campos por otras tantas franjas verticales, más estrechas. El interior de las franjas verticales se decora con el tema de la trenza de tres cabos, perfilada con manganeso y rellena de manganeso y cobre, según se trate de espacios internos o externos del motivo. Las cuatro grandes metopas reciben la misma composición: una liebre, perfilada en manganeso, acompañada de unos motivos vegetales de relleno que salen del hocico del animal. Para cubrir el cuerpo, se alternan el óxido de cobre y el de manganeso, dejando las otras zonas sin decoración. Los motivos florales se componen generalmente, de tres pequeñas hojitas rellenas de morado o verde, a excepción de los que adornan uno de los campos, más grandes y complejos.",
+    "procedencia": "Madinat Ilbira, Atarfe",
+    "img": "/image/journal/article?img_id=98497840&t=1607935926146"
+  },
+  {
+    "name": "Vaso",
+    "tipo": "Huevo de avestruz",
+    "descripcion": "Cáscara de huevo de avestruz decorada, en forma de vaso, cortado a unas tres cuartas partes de su altura. Aparece fragmentada, con una superficie lisa y tono marfileño mate. Presenta su decoración en tono ocre rojizo, con motivos geométricos y aves estilizadas. Los motivos consisten en cenefas verticales con metopas en las que existen una especie de aspas con el interior rayado. En el espacio entre las cenefas aparecen aves estilizadas. Este vaso pertenece a la tumba nº 10, la tipología de tumba es de pozo que contendría una urna de alabastro con los restos incinerados del difunto, protegida por bloques de esquisto. El ajuar de esta tumba consistía en dos huevos de avestruz decorados, vasos a torno de perfil en S, dos fragmentos de plato de casquete esférico de cerámica gris de occidente, tres fragmentos de platos de barniz rojo, dos asas de ánfora fenicia y un fragmento de asa de ánfora jonia, todo ello sin contexto.",
+    "procedencia": "Necrópolis de la Laurita (Almuñecar)",
+    "img": "/image/journal/article?img_id=98497538&t=1607935800710"
+  },
+  {
+    "name": "Espada",
+    "tipo": "Hierro",
+    "descripcion": "Espada corta de hoja curvada terminada en punta de doble filo con una empuñadura rota, que debió estar decorada con la representación de una cabeza de animal, posiblemente un ave o un caballo. La hoja presenta una decoración hacia la zona dorsal a base de acanaladuras longitudinales y un remache doblado en la empuñadura.",
+    "procedencia": "La Pedriza del Peñascal, Tozar (Moclín)",
+    "img": "/image/journal/article?img_id=98497290&t=1607935713834"
+  }
+]
