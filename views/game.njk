@@ -1,0 +1,96 @@
+{% extends "base.njk" %}
+
+{% block contenido %}
+
+  <div class="container">
+    <div class="section">
+      <div class="columns is-centered is-vcentered">
+
+        <!-- Portada del juego -->
+        <div class="column is-4 has-text-centered">
+          <div class="box" style="padding: 0;">
+            <figure class="image is-3by4">
+              <img src="/img/zelda_totk.jpg" alt="Portada de {{ juego.nombre }}" style="border-radius: 5px;">
+            </figure>
+          </div>
+        </div>
+
+        <!-- Información del juego -->
+        <div class="column is-7">
+          <div class="box" style="border-radius: 10px; background: linear-gradient(135deg, #ff4554,rgb(181, 0, 15)); color: white; padding: 30px;">
+            <h1 class="title has-text-white">{{ juego.nombre }}</h1>
+
+            <!-- Sección de detalles en filas -->
+            <div class="columns is-multiline">
+
+              <!-- Fecha de lanzamiento -->
+              <div class="column is-12">
+                <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+                  <p class="has-text-weight-bold">🗓️ Fecha de lanzamiento</p>
+                  <p>{{ juego.fecha_lanzamiento }}</p>
+                </div>
+              </div>
+
+              <!-- Puntuación -->
+              <div class="column is-12">
+                <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+                  <p class="has-text-weight-bold">⭐ Puntuación: {{ juego.puntuacion }} / 100</p>
+                  <progress class="progress is-info" value="87" max="100"></progress>
+                </div>
+              </div>
+
+              <!-- Géneros -->
+              <div class="column is-12">
+                <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+                  <p class="has-text-weight-bold">🎮 Géneros</p>
+                  {% for genero in juego.generos %}
+                    <span class="tag" style="background-color: #00c3e3; color: white;">{{ genero }}</span>
+                  {% endfor %}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Descripción -->
+            <div class="content">
+              <h2 class="subtitle" style="color: #fff;">📜 Descripción</h2>
+              <p>{{ juego.descripcion }}
+                Tras los acontecimientos de The Legend of Zelda: Breath of the Wild, 
+                la princesa Zelda junto a Link exploran los cimientos del castillo de Hyrule,
+                en el que encuentran una sala donde reposa un cadáver momificado.
+                Después de que el cadáver tome vida y se levante, ataca a Zelda y Link,
+                dejando a este último malherido y rompiendo el filo de su Espada Maestra. 
+                Tras ello desata su poder rompiendo el sello que lo mantenía retenido y se 
+                eleva el castillo de Hyrule. Zelda sufre una caída mientras el sitio se derrumba
+                y desaparece mágicamente. Link deberá encontrar a la princesa Zelda por cielo, 
+                tierra y subsuelo y así salvar al reino de Hyrule del resurgido Ganondorf, 
+                el rey demonio.
+              </p>
+            </div>
+
+            <!-- Botón -->
+            <br>
+            <div class="columns is-centered is-vcentered">
+              <a href="{{ juego.url }}" class="button is-fullwidth column is-5" 
+                style="background-color: #ff4554; color: white; font-weight: bold; border-radius: 5px;">
+                🎮 Ver en Nintendo eShop
+              </a>
+              
+              <!-- Espacio en medio -->
+              <div class="column is-1"></div>
+
+              <a href="{{ juego.url }}" class="button is-fullwidth column is-5" 
+                style="background-color: #989898; color: white; font-weight: bold; border-radius: 5px;">
+                🛒 Añadir al carrito
+              </a>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -21,12 +21,18 @@ app.get('/hola', (req, res) => {          // test para el servidor
 	res.send('Hola desde el servidor');
 });
 			
+/* 
 app.get('/', (req, res) => {               // test plantillas en: 
 	res.render("index.html", {saludado:'Pepito'})           // ./views/index.html
 })
+*/
 
-app.get('/web', (req, res) => {
+app.get('/', (req, res) => {
 	res.render("index.njk")
+})
+
+app.get('/game', (req, res) => {
+	res.render("game.njk")
 })
 //Tarea 1
 
