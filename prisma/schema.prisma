@@ -3,14 +3,14 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
 }
-
+				
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-
+												
 model Juego {
   id            Int @id @default(autoincrement())
   name        String

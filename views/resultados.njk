@@ -1,0 +1,44 @@
+{% extends "base.njk" %}
+
+{% block contenido %}
+
+    <div class="container">
+      <div class="section">
+        <div class="columns">
+          <div class="column has-text-centered">
+            <h1 class="title" style="color:  	#00c3e3;">RESULTADOS de "{{busqueda}}"</h1><br>
+          </div>
+        </div>
+        <div id="app" class="row columns is-multiline">
+          {% for i in range(9) %}
+            <div key="juego{{ i }}" class="column is-4">
+              <div class="card large">
+                <div class="card-image">
+                  <figure class="image is-16by9">
+                    <img src="/img/{{juegos[i].img}}" alt="Image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+  
+                    <div class="media-content">
+                      <p class="title is-4 no-padding">{{ juegos[i].name }}</p>
+                      <p>
+                        <span class="title is-6">
+                          <a :href=`http://twitter.com/${juegos[i].user.handle}`> {{ juegos[i].user.handle }} </a>
+                        </span>
+                      </p>
+                      <p class="subtitle is-6">{{ juegos[i].user.title }}</p>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{ juegos[i].content }}
+                    <div class="background-icon"><span class="icon-twitter"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock %}
