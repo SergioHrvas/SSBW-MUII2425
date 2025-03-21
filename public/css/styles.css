@@ -34,6 +34,7 @@ input::placeholder {
   overflow: hidden;
   background:  	 	#989898;
   color: var(--bg);
+  height: 350px;
 }
 
 .card.large {

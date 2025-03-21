@@ -10,182 +10,35 @@
           </div>
         </div>
         <div id="app" class="row columns is-multiline">
-          <div key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
+        {% for juego in juegos %}
+            <div class="column is-4">
+              <div class="card large">
+                <div class="card-image">
+                  <figure class="image is-16by9">
+                    <img style="object-fit: cover;" src="/img/{{juego.img}}" alt="Image">
+                  </figure>
                 </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
+                <div class="card-content">
+                  <div class="media">
+  
+                    <div class="media-content">
+                      <p class="title is-4 no-padding">{{ juego.name }}</p>
+                      <p>
+                        <span class="title is-6">
+                          <a :href=`http://twitter.com/${juegos[i].user.handle}`> {{ juego.user.handle }} </a>
+                        </span>
+                      </p>
+                      <p class="subtitle is-6">{{ juego.user.title }}</p>
+                    </div>
                   </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
+                  <div class="content">
+                    {{ juego.content }}
+                    <div class="background-icon"><span class="icon-twitter"></span></div>
                   </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
                 </div>
               </div>
             </div>
-          </div>
-          <div key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-                <div id="app" class="row columns is-multiline">
-          <div key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {% endfor %}
         </div>
       </div>
     </div>
