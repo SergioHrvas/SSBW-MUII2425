@@ -65,6 +65,23 @@ app.get('/buscar', (req, res) => {
 	res.render("search.njk")
 })
 
+app.get('/juego/:id', async (req, res) => {
+	 const id = parseInt(req.params.id) // id del juego
+	 const juego = await prisma.juego.findUnique({
+		where: {
+			id: id
+		}
+	 })
+
+	 try {
+		 res.render("game.njk", { juego })
+	 }
+	 catch (err) {
+		 console.error(err)
+		 res.status(500).send({ err }) // o usar una página de error personalizada
+	 }
+})
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
 	console.log(`Servidor ejecutandose en  http://localhost:${PORT} en ${IN}`);
