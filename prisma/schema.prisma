@@ -1,20 +1,37 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Configuración de Prisma
 generator client {
   provider = "prisma-client-js"
   previewFeatures = ["fullTextSearchPostgres"]
 }
 				
+// Configuración de la base de datos
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 												
+// Modelo de juego
 model Juego {
   id            Int @id @default(autoincrement())
   name        String
   img        String
   descripcion   String
   score   Int
+}
+
+// Modelo de usuario
+model Usuario {
+  correo    String @id
+  nombre    String
+  password  String
+  rol       ROL @default(USUARIO)
+}	
+
+// Enumerado para los roles
+enum ROL {
+  USUARIO
+  ADMINISTRADOR
 }

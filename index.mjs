@@ -2,11 +2,16 @@
 import express from 'express'
 import nunjucks from 'nunjucks'
 import gamesRouter from "./routes/games.mjs"
+import usersRouter from "./routes/usuarios.mjs"
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 const IN = process.env.IN || 'development' // development o production
 const app = express()
+
+app.use(express.json()) // para recibir json
+app.use(express.urlencoded({ extended: true })) // para recibir formularios
+app.use(express.static('public')) // para recibir archivos estáticos
 
 nunjucks.configure('views', {             // directorio 'views' para las plantillas html
 	autoescape: true,
@@ -19,7 +24,6 @@ app.use(express.static('public'))
 app.set('view engine', 'html')
 
 // Tarea 0
-
 app.get('/hola', (req, res) => {          // test para el servidor
 	res.send('Hola desde el servidor');
 });
@@ -81,6 +85,9 @@ app.get('/juego/:id', async (req, res) => {
 		 res.status(500).send({ err }) // o usar una página de error personalizada
 	 }
 })
+
+//Tarea 5
+app.use('/usuarios', usersRouter)
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
