@@ -1,20 +1,16 @@
 {% extends "base.njk" %}
 
 {% block contenido %}
+  <div class="container is-flex is-justify-content-center is-align-items-center mb-6 mt-6">
 
-  <div class="container">
-    <div class="section">
-      <div class="columns">
-        <div class="column has-text-centered">
-          <h1 class="title" style="color:  	#00c3e3;">JUEGOS DE SWITCH</h1><br>
-        </div>
-
-      </div>
+    <div class="box has-background-white-ter" style="width: 450px;">
+      <h3 class="title is-4 has-text-centered">Búsqueda de videojuego</h3>
       <form action="/games/buscar" method="GET">
-        <label>Testo de búsqueda</label>
+        <label>Texto de búsqueda</label>
         <input type="text" name="busqueda" placeholder"Introduzca una sola palabra" pattern="[a-zA-Záéíóúñ]{3,20}"></input>
-        <input type="submit" value="buscar"></input>
+        <input type="submit" value="Buscar"></input>
       </form>
     </div>
+
   </div>
 {% endblock %}

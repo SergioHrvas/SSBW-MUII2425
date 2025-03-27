@@ -37,13 +37,20 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
     const token = jwt.sign({ usuario: user.nombre, rol: user.rol }, process.env.SECRET_KEY)
 
     res.locals.usuario = user.nombre           // info para las plantillas en el response
+    res.locals.rol = user.rol           // info para las plantillas en el response
 
+    //Consultar juegos que tengan en su nombre la palabra buscada
+    const juegos = await prisma.juego.findMany({
+
+    })
+
+    console.log("a", res.locals.usuario, res.locals.rol)
     // pone la cookie con el jwt	
     res.cookie('access_token', token, {
       httpOnly: true,                          // Evita acceso desde JavaScript del cliente
       secure: process.env.IN === 'production', // En producción aseguramos HTTPS
       maxAge: 7200000                          // 2 horas en milisegundos
-    }).redirect('/') // Redirige a la ruta que renderiza los juegos
+    }).render('index.njk', { juegos }) // Redirige a la ruta que renderiza los juegos
   }
   catch (err) {
     console.error(err)
@@ -52,11 +59,10 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
 })
 
 router.get('/logout', (req, res) => {
-  // borrar la cookie:
-  res.clearCookie('access_token')
+  // eliminar la cookie
   res.locals.usuario = null
-
-  res.render('index.njk') // o donde sea
+  res.locals.rol = null
+  res.clearCookie('access_token').render('login.njk') // o donde sea
 })
 
 router.get('/register', (req, res) => {

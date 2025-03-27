@@ -1,7 +1,6 @@
 {% extends "base.njk" %}
 
 {% block contenido %}
-
   <div class="container is-flex is-justify-content-center is-align-items-center mb-4 mt-4">
 
     <div class="box has-background-white-ter " style="width: 350px;">
@@ -12,7 +11,6 @@
           {{ error }}
         </div>
       {% endif %}
-
       <form action="/usuarios/login" method="POST">
         <div class="field">
           <label for="correo" class="label">Correo</label>
