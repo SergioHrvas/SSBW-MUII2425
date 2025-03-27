@@ -15,15 +15,15 @@ function toSlug(filename) {
 
 const juegos = leer_desde('./info_juegos.json')
 
-juegos.forEach( async ({img, name, descripcion, score}) => {
+juegos.forEach(async ({ img, name, descripcion, score }) => {
 
     const url = img;
     const fileName = toSlug(url.split("/").pop());
     console.log(fileName)
     const resp = await fetch(url);
     if (resp.ok && resp.body) {
-    let writer = createWriteStream(`./public/img/${fileName}`);
-      Readable.fromWeb(resp.body).pipe(writer);
+        let writer = createWriteStream(`./public/img/${fileName}`);
+        Readable.fromWeb(resp.body).pipe(writer);
     }
 
     // guardar en la BD los datos

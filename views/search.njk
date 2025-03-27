@@ -2,21 +2,19 @@
 
 {% block contenido %}
 
-    <div class="container">
-      <div class="section">
-        <div class="columns">
-          <div class="column has-text-centered">
-            <h1 class="title" style="color:  	#00c3e3;">JUEGOS DE SWITCH</h1><br>
-          </div>
-
-
-
+  <div class="container">
+    <div class="section">
+      <div class="columns">
+        <div class="column has-text-centered">
+          <h1 class="title" style="color:  	#00c3e3;">JUEGOS DE SWITCH</h1><br>
         </div>
-            <form action="/games/buscar" method="GET">
-            <label>Testo de búsqueda</label>
-            <input type="text" name="busqueda" placeholder"Introduzca una sola palabra" pattern="[a-zA-Záéíóúñ]{3,20}"></input>
-            <input type="submit" value="buscar"></input>
-          </form>
+
       </div>
+      <form action="/games/buscar" method="GET">
+        <label>Testo de búsqueda</label>
+        <input type="text" name="busqueda" placeholder"Introduzca una sola palabra" pattern="[a-zA-Záéíóúñ]{3,20}"></input>
+        <input type="submit" value="buscar"></input>
+      </form>
     </div>
+  </div>
 {% endblock %}

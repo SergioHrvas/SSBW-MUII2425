@@ -2,43 +2,42 @@
 
 {% block contenido %}
 
-    
-    <div class="container is-flex is-justify-content-center is-align-items-center mb-4 mt-4">
+  <div class="container is-flex is-justify-content-center is-align-items-center mb-4 mt-4">
 
     <div class="box has-background-white-ter " style="width: 350px;">
-        <h3 class="title is-4 has-text-centered">Iniciar sesión</h3>
+      <h3 class="title is-4 has-text-centered">Iniciar sesión</h3>
 
-        {% if error %}
-            <div class="notification is-danger">
-                {{ error }}
-            </div>
-        {% endif %}
+      {% if error %}
+        <div class="notification is-danger">
+          {{ error }}
+        </div>
+      {% endif %}
 
-        <form action="/usuarios/login" method="POST">
-            <div class="field">
-                <label for="correo" class="label">Correo</label>
-                <div class="control has-icons-left">
-                    <input type="text" id="correo" name="correo" class="input" placeholder="Tu correo" required>
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-user"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="field">
-                <label for="password" class="label">Contraseña</label>
-                <div class="control has-icons-left">
-                    <input type="password" id="password" name="password" class="input" placeholder="Tu contraseña" required>
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="field">
-                <button type="submit" class="button is-primary is-fullwidth">Acceder</button>
-            </div>
-        </form>
+      <form action="/usuarios/login" method="POST">
+        <div class="field">
+          <label for="correo" class="label">Correo</label>
+          <div class="control has-icons-left">
+            <input type="text" id="correo" name="correo" class="input" placeholder="Tu correo" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="password" class="label">Contraseña</label>
+          <div class="control has-icons-left">
+            <input type="password" id="password" name="password" class="input" placeholder="Tu contraseña" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <button type="submit" class="button is-primary is-fullwidth">Acceder</button>
+        </div>
+      </form>
     </div>
 
-    </div>
-    
+  </div>
+
 {% endblock %}

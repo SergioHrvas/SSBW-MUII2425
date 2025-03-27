@@ -1,8 +1,8 @@
-import {chromium} from "playwright"  // o el que sea
+import { chromium } from "playwright"  // o el que sea
 import * as fs from 'fs';
 
 const browser = await chromium.launch()
-const page    = await browser.newPage()
+const page = await browser.newPage()
 
 // lista de páginas con enlaces a 'obras-singulares'
 const obras_singulares = [
@@ -10,8 +10,8 @@ const obras_singulares = [
 ]
 
 
-const enlaces_de_obras_singulares = []   
-const lista_info_para_BD          = []
+const enlaces_de_obras_singulares = []
+const lista_info_para_BD = []
 
 for (const pag of obras_singulares) {
   const urls = await Recupera_urls_de(pag)
@@ -25,10 +25,10 @@ for (const url of enlaces_de_obras_singulares) {
   i++
   console.log(i + "/" + enlaces_de_obras_singulares.length + " (" + info_obra.name + ")")
   lista_info_para_BD.push(info_obra)
-}	
+}
 
 Guarda_en_disco('info_juegos.json', lista_info_para_BD)
-  
+
 await browser.close();
 
 async function Recupera_urls_de(pag) {
@@ -41,7 +41,7 @@ async function Recupera_urls_de(pag) {
   return pags
 }
 
-async function Recupera_info_de(url){
+async function Recupera_info_de(url) {
 
   await page.goto(url);
 
@@ -61,19 +61,19 @@ async function Recupera_info_de(url){
 
   if (descripcion) {
     descripcion = descripcion.split('\n') // Divide en líneas
-        .slice(2) // Elimina las dos primeras líneas
-        .join(' ') // Une las líneas restantes con espacios
-        .replace(/official descriptions?/gi, '')
-        .trim() // Elimina espacios en los extremos
-        .replace(/\s+/g, ' '); // Reemplaza múltiples espacios por uno solo
+      .slice(2) // Elimina las dos primeras líneas
+      .join(' ') // Une las líneas restantes con espacios
+      .replace(/official descriptions?/gi, '')
+      .trim() // Elimina espacios en los extremos
+      .replace(/\s+/g, ' '); // Reemplaza múltiples espacios por uno solo
   }
 
 
 
   var scoreLocator = page.locator('.mobyscore')
   var score = await scoreLocator.first().innerText() * 10
-  
-  
+
+
   //Sacamos la imagen
   const imageUrlLocator = page.locator('.info-box > div > #cover')
   var imgUrl = await imageUrlLocator.first().getAttribute('href')
@@ -94,9 +94,9 @@ async function Recupera_info_de(url){
   return json_data;
 }
 
-function Guarda_en_disco(name, list){
-  fs.writeFile(name, JSON.stringify(list, null, 2),'utf8', () => {
-      console.log(name + " guardado.")
+function Guarda_en_disco(name, list) {
+  fs.writeFile(name, JSON.stringify(list, null, 2), 'utf8', () => {
+    console.log(name + " guardado.")
 
   })
 

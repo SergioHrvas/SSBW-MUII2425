@@ -1,8 +1,8 @@
-import {chromium} from "playwright"  // o el que sea
+import { chromium } from "playwright"  // o el que sea
 import * as fs from 'fs';
 
 const browser = await chromium.launch()
-const page    = await browser.newPage()
+const page = await browser.newPage()
 
 // lista de páginas con enlaces a 'obras-singulares'
 const obras_singulares = [
@@ -10,8 +10,8 @@ const obras_singulares = [
 ]
 
 
-const enlaces_de_obras_singulares = []   
-const lista_info_para_BD          = []
+const enlaces_de_obras_singulares = []
+const lista_info_para_BD = []
 
 for (const pag of obras_singulares) {
   const urls = await Recupera_urls_de(pag)
@@ -21,12 +21,12 @@ console.log("🚀 Hay ", enlaces_de_obras_singulares.length, ' páginas con obra
 
 for (const url of enlaces_de_obras_singulares) {
   const info_obra = await Recupera_info_de(url)
-  
+
   lista_info_para_BD.push(info_obra)
-}	
+}
 
 Guarda_en_disco('info_obras.json', lista_info_para_BD)
-  
+
 await browser.close();
 
 async function Recupera_urls_de(pag) {
@@ -39,7 +39,7 @@ async function Recupera_urls_de(pag) {
   return pags
 }
 
-async function Recupera_info_de(url){
+async function Recupera_info_de(url) {
   await page.goto(url);
 
   //Sacamos el titulo
@@ -69,9 +69,9 @@ async function Recupera_info_de(url){
   return json_data;
 }
 
-function Guarda_en_disco(name, list){
-  fs.writeFile(name, JSON.stringify(list, null, 2),'utf8', () => {
-      console.log(name + " guardado.")
+function Guarda_en_disco(name, list) {
+  fs.writeFile(name, JSON.stringify(list, null, 2), 'utf8', () => {
+    console.log(name + " guardado.")
 
   })
 

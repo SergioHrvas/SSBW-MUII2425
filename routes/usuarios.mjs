@@ -13,13 +13,14 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', async (req, res) => {     // viene del formulario de login
-  // comprobar las credenciales en la BD:
+  const { correo, password } = req.body
+
   try {
 
-
+    // comprobar las credenciales en la BD:
     const user = await prisma.usuario.findFirst({
       where: {
-        correo: req.body.correo
+        correo
       }
     })
     if (!user) {
@@ -27,7 +28,7 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
     }
 
     // comprobar la contraseña
-    const coincide = await bcrypt.compare(req.body.password, user.password)
+    const coincide = await bcrypt.compare(password, user.password)
     if (!coincide) {
       return res.render('login.njk', { error: 'Contraseña incorrecta' })
     }
@@ -42,7 +43,7 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
       httpOnly: true,                          // Evita acceso desde JavaScript del cliente
       secure: process.env.IN === 'production', // En producción aseguramos HTTPS
       maxAge: 7200000                          // 2 horas en milisegundos
-    }).render('index.njk') // o donde sea
+    }).redirect('/') // Redirige a la ruta que renderiza los juegos
   }
   catch (err) {
     console.error(err)
