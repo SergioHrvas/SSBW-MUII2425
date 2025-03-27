@@ -55,7 +55,6 @@ router.get('/register', (req, res)=>{
 })
 
 router.post('/register', async (req, res) => {  // viene del formulario de registro
-    console.log(req)
   
     // comprobar que no existe el usuario
     const existe = await prisma.usuario.findFirst({
@@ -81,7 +80,7 @@ router.post('/register', async (req, res) => {  // viene del formulario de regis
         }
     })
 
-  res.render('index.njk') // o a una bienvenida
+  res.render('login.njk') // o a una bienvenida
 })
 
 export default router

@@ -4,12 +4,14 @@ import nunjucks from 'nunjucks'
 import gamesRouter from "./routes/games.mjs"
 import usersRouter from "./routes/usuarios.mjs"
 import { PrismaClient } from '@prisma/client'
+import cookieParser from 'cookie-parser'
 const prisma = new PrismaClient()
 
 const IN = process.env.IN || 'development' // development o production
 const app = express()
 
 app.use(express.json()) // para recibir json
+app.use(cookieParser()) // para 
 app.use(express.urlencoded({ extended: true })) // para recibir formularios
 app.use(express.static('public')) // para recibir archivos estáticos
 
@@ -93,3 +95,21 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
 	console.log(`Servidor ejecutandose en  http://localhost:${PORT} en ${IN}`);
 })
+
+
+// middleware de autenticación
+const autentificación = (req, res, next) => {
+	const token = req.cookies.access_token;
+	if (token) {
+	  const data = jwt.verify(token, process.env.SECRET_KEY);
+	  req.usuario        = data.usuario   // en el request
+	  req.rol            = data.rol
+	  res.locals.usuario = data.usuario   // en el response para
+	  res.locals.rol     = data.rol       // para que se tenga acceso en las plantillas
+	  console.log('En el request ', req.usuario, req.rol)
+	}
+	next()
+  }
+  
+
+  app.use(autentificación)
