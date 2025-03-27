@@ -48,7 +48,7 @@ app.get('/', async (req, res) => {
 
 	try {
 		console.log(juegos[0])
-		res.render("index.njk", {juegos})
+		res.render("index.njk", { juegos })
 
 	}
 	catch (err) {
@@ -72,20 +72,22 @@ app.get('/buscar', (req, res) => {
 })
 
 app.get('/juego/:id', async (req, res) => {
-	 const id = parseInt(req.params.id) // id del juego
-	 const juego = await prisma.juego.findUnique({
-		where: {
-			id: id
-		}
-	 })
+	const id = parseInt(req.params.id) // id del juego
 
-	 try {
-		 res.render("game.njk", { juego })
-	 }
-	 catch (err) {
-		 console.error(err)
-		 res.status(500).send({ err }) // o usar una página de error personalizada
-	 }
+	try {
+
+		const juego = await prisma.juego.findUnique({
+			where: {
+				id: id
+			}
+		})
+
+		res.render("game.njk", { juego })
+	}
+	catch (err) {
+		console.error(err)
+		res.status(500).send({ err }) // o usar una página de error personalizada
+	}
 })
 
 //Tarea 5
@@ -101,15 +103,15 @@ app.listen(PORT, () => {
 const autentificación = (req, res, next) => {
 	const token = req.cookies.access_token;
 	if (token) {
-	  const data = jwt.verify(token, process.env.SECRET_KEY);
-	  req.usuario        = data.usuario   // en el request
-	  req.rol            = data.rol
-	  res.locals.usuario = data.usuario   // en el response para
-	  res.locals.rol     = data.rol       // para que se tenga acceso en las plantillas
-	  console.log('En el request ', req.usuario, req.rol)
+		const data = jwt.verify(token, process.env.SECRET_KEY);
+		req.usuario = data.usuario   // en el request
+		req.rol = data.rol
+		res.locals.usuario = data.usuario   // en el response para
+		res.locals.rol = data.rol       // para que se tenga acceso en las plantillas
+		console.log('En el request ', req.usuario, req.rol)
 	}
 	next()
-  }
-  
+}
 
-  app.use(autentificación)
+
+app.use(autentificación)
