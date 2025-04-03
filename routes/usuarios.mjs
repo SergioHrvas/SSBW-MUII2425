@@ -32,6 +32,7 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
     if (!coincide) {
       return res.render('login.njk', { error: 'Contraseña incorrecta' })
     }
+		logger.info(`Ha entrado el usuario ${req.usuario} con privilegios ${req.rol}`)
 
     // genera el token jwt, con una clave secreta en .env
     const token = jwt.sign({ usuario: user.nombre, rol: user.rol }, process.env.SECRET_KEY)
@@ -44,7 +45,6 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
 
     })
 
-    console.log("a", res.locals.usuario, res.locals.rol)
     // pone la cookie con el jwt	
     res.cookie('access_token', token, {
       httpOnly: true,                          // Evita acceso desde JavaScript del cliente

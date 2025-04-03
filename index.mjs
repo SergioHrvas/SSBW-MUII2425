@@ -6,7 +6,7 @@ import usersRouter from "./routes/usuarios.mjs"
 import { PrismaClient } from '@prisma/client'
 import cookieParser from 'cookie-parser'
 import jwt from "jsonwebtoken"
-
+import logger from "./logger.mjs"
 const prisma = new PrismaClient()
 
 const IN = process.env.IN || 'development' // development o production
@@ -37,7 +37,6 @@ const autentificación = (req, res, next) => {
 		req.rol = data.rol
 		res.locals.usuario = data.usuario   // en el response para
 		res.locals.rol = data.rol       // para que se tenga acceso en las plantillas
-		console.log('En el request ', req.usuario, req.rol)
 	}
 	next()
 }
