@@ -1,17 +1,23 @@
 import jwt from "jsonwebtoken"
+import logger from "../logger.mjs"
+import bcrypt from "bcryptjs"
+
 import express from "express"
-
-
 const router = express.Router();
 
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
-import bcrypt from "bcryptjs"
 
+/*
+  ==========================
+  Ruta para renderizar login
+  ==========================
+*/
 router.get('/login', (req, res) => {
   res.render('login.njk')
 })
 
+//Ruta para enviar las credenciales del login
 router.post('/login', async (req, res) => {     // viene del formulario de login
   const { correo, password } = req.body
 
@@ -58,6 +64,11 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
   }
 })
 
+/*
+  ==========================
+  Ruta para cerrar sesión
+  ==========================
+*/
 router.get('/logout', (req, res) => {
   // eliminar la cookie
   res.locals.usuario = null
@@ -65,10 +76,20 @@ router.get('/logout', (req, res) => {
   res.clearCookie('access_token').render('login.njk') // o donde sea
 })
 
+/*
+  ==========================
+  Ruta para renderizar el registro
+  ==========================
+*/
 router.get('/register', (req, res) => {
   res.render('register.njk')
 })
 
+/*
+  ==========================
+  Ruta para enviar los datos del registro
+  ==========================
+*/
 router.post('/register', async (req, res) => {  // viene del formulario de registro
 
   // comprobar que no existe el usuario

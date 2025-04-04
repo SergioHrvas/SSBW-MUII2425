@@ -2,12 +2,11 @@
 
 {% block contenido %}
 
-
   <div class="container">
     <div class="section">
       <div class="columns">
         <div class="column has-text-centered">
-          <h1 class="title" style="color: #00c3e3;">JUEGOS DE SWITCH</h1><br>
+          <h1 class="title titlepage">JUEGOS DE SWITCH</h1><br>
         </div>
       </div>
       <div id="app" class="row columns is-multiline">
@@ -16,7 +15,7 @@
             <div class="card large">
               <div class="card-image">
                 <figure class="image is-16by9">
-                  <a href="/juego/{{juego.id}}">
+                  <a href="/games/game/{{juego.id}}">
                     <img style="object-fit: cover;" src="/img/{{juego.img}}" alt="Image">
                   </a>
                 </figure>
@@ -26,14 +25,6 @@
 
                   <div class="media-content">
                     <p class="title is-4 no-padding">{{ juego.name }}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${juegos[i].user.handle}`>
-                          {{ juego.user.handle }}
-                        </a>
-                      </span>
-                    </p>
-                    <p class="subtitle is-6">{{ juego.user.title }}</p>
                   </div>
                 </div>
                 <div class="content">

@@ -75,3 +75,28 @@ strong {
 .navbar-item.logo:hover {
   background-color: transparent !important;
 }
+
+
+.titlepage{
+  color: #00c3e3;
+}
+
+.buttonDefault{
+  background-color: #00c3e3;
+
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.formLogin{
+  width: 500px;
+}
+
+.lineaSeparadora{
+  border: 2px solid #b5b5b5; width: 90%; margin: auto;
+}

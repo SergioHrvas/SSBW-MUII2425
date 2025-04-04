@@ -3,14 +3,15 @@
 {% block contenido %}
   <div class="container is-flex is-justify-content-center is-align-items-center mb-4 mt-4">
 
-    <div class="box has-background-white-ter " style="width: 350px;">
-      <h3 class="title is-4 has-text-centered">Iniciar sesión</h3>
-
+    <div class="box has-background-white-ter formLogin">
+      <h3 class="title is-2 has-text-centered mb-5">Iniciar sesión</h3>
       {% if error %}
         <div class="notification is-danger">
           {{ error }}
         </div>
       {% endif %}
+      <hr class="mb-4 lineaSeparadora">
+
       <form action="/usuarios/login" method="POST">
         <div class="field">
           <label for="correo" class="label">Correo</label>
@@ -30,10 +31,22 @@
             </span>
           </div>
         </div>
-        <div class="field">
-          <button type="submit" id="login" class="button is-primary is-fullwidth">Acceder</button>
+        <div class="field mb-6">
+          <button type="submit" id="login" class="button buttonDefault is-primary is-fullwidth">Acceder</button>
         </div>
       </form>
+
+      <div class="field">
+        <p class="has-text-centered">
+          <a href="/usuarios/registro">¿No tienes cuenta? Regístrate</a>
+        </p>
+      </div>
+      <div class="field">
+        <p class="has-text-centered">
+          <a href="/usuarios/recuperar">¿Olvidaste tu contraseña?</a>
+        </p>
+      </div>
+
     </div>
 
   </div>

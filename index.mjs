@@ -1,4 +1,4 @@
-// index.mjs
+// Importamos las librerías necesarias
 import express from 'express'
 import nunjucks from 'nunjucks'
 import gamesRouter from "./routes/games.mjs"
@@ -6,9 +6,9 @@ import usersRouter from "./routes/usuarios.mjs"
 import { PrismaClient } from '@prisma/client'
 import cookieParser from 'cookie-parser'
 import jwt from "jsonwebtoken"
-import logger from "./logger.mjs"
-const prisma = new PrismaClient()
 
+// Configuración de la aplicación web
+const prisma = new PrismaClient()
 const IN = process.env.IN || 'development' // development o production
 const app = express()
 
@@ -27,8 +27,7 @@ nunjucks.configure('views', {             // directorio 'views' para las plantil
 app.use(express.static('public'))
 app.set('view engine', 'html')
 
-
-// middleware de autenticación
+// Middleware de autenticación
 const autentificación = (req, res, next) => {
 	const token = req.cookies.access_token;
 	if (token) {
@@ -43,73 +42,36 @@ const autentificación = (req, res, next) => {
 
 app.use(autentificación)
 
-// Tarea 0
+// Endpoint de prueba)
 app.get('/hola', (req, res) => {          // test para el servidor
 	res.send('Hola desde el servidor');
 });
 
-
-/* 
-app.get('/', (req, res) => {               // test plantillas en: 
-	res.render("index.html", {saludado:'Pepito'})           // ./views/index.html
-})
-*/
-
-
-//Tarea 1
-
+// Página principal (lista de juegos)
 app.get('/', async (req, res) => {
-	//Consultar juegos que tengan en su nombre la palabra buscada
-	const juegos = await prisma.juego.findMany({
-
-	})
-
+	const juegos = await prisma.juego.findMany()
 	try {
 		res.render("index.njk", { juegos })
-
 	}
 	catch (err) {
 		console.error(err)
-		res.status(500).send({ err }) // o usar una página de error personalizada
+		res.status(500).send({ err })
 	}
 })
 
-app.get('/game', (req, res) => {
-	res.render("game.njk")
-})
 
-
-
-//Tarea 4
-
-app.use("/games", gamesRouter);
-
+// Página de búsqueda
 app.get('/buscar', (req, res) => {
 	res.render("search.njk")
 })
 
-app.get('/juego/:id', async (req, res) => {
-	const id = parseInt(req.params.id) // id del juego
+// Importamos las rutas de los juegos
+app.use("/games", gamesRouter);
 
-	try {
-
-		const juego = await prisma.juego.findUnique({
-			where: {
-				id: id
-			}
-		})
-
-		res.render("game.njk", { juego })
-	}
-	catch (err) {
-		console.error(err)
-		res.status(500).send({ err }) // o usar una página de error personalizada
-	}
-})
-
-//Tarea 5
+// Importamos las rutas de los usuarios
 app.use('/usuarios', usersRouter)
 
+// Conexión a la base de datos
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
 	console.log(`Servidor ejecutandose en  http://localhost:${PORT} en ${IN}`);
