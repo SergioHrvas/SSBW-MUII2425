@@ -15,22 +15,19 @@
             <div class="card large">
               <div class="card-image">
                 <figure class="image is-16by9">
-                  <img style="object-fit: cover;" src="/img/{{juego.img}}" alt="Image">
+                  <a href="/games/game/{{juego.id}}">
+
+                    <img style="object-fit: cover;" src="/img/{{juego.img}}" alt="Image">
+                  </a>
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
-
                   <div class="media-content">
-                    <p class="title is-4 no-padding">{{ juego.name }}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${juegos[i].user.handle}`>
-                          {{ juego.user.handle }}
-                        </a>
-                      </span>
-                    </p>
-                    <p class="subtitle is-6">{{ juego.user.title }}</p>
+                    <a href="/games/game/{{juego.id}}">
+
+                      <p class="title is-4 no-padding">{{ juego.name }}</p>
+                    </a>
                   </div>
                 </div>
                 <div class="content">

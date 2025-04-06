@@ -4,14 +4,16 @@
 
     <div class="container is-flex is-justify-content-center is-align-items-center mb-4 mt-4">
 
-        <div class="box has-background-white-ter " style="width: 350px;">
-            <h3 class="title is-4 has-text-centered">Registrarse</h3>
+        <div class="box has-background-white-ter formLogin">
+            <h3 class="title is-2 has-text-centered">Registrarse</h3>
             {% if error %}
                 <div class="notification is-danger">
                     {{ error }}
                 </div>
             {% endif %}
-            <form action="/usuarios/register" method="POST">
+            <hr class="mb-4 lineaSeparadora">
+
+            <form class="mb-4" action="/usuarios/register" method="POST">
                 <div class="field">
                     <label for="nombre" class="label">Nombre de usuario</label>
                     <div class="control has-icons-left">
@@ -40,9 +42,15 @@
                     </div>
                 </div>
                 <div class="field">
-                    <button type="submit" class="button is-primary is-fullwidth">Continuar</button>
+                    <button type="submit" class="button is-primary is-fullwidth buttonDefault">Continuar</button>
                 </div>
             </form>
+
+            <div class="field">
+                <p class="has-text-centered">
+                    <a href="/usuarios/login">¿Ya tienes cuenta? Inicia sesión</a>
+                </p>
+            </div>
         </div>
 
     </div>

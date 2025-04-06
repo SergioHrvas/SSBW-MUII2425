@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
     if (!coincide) {
       return res.render('login.njk', { error: 'Contraseña incorrecta' })
     }
-		logger.info(`Ha entrado el usuario ${req.usuario} con privilegios ${req.rol}`)
+		logger.info(`Ha entrado el usuario ${user.nombre} con privilegios ${user.rol}`)
 
     // genera el token jwt, con una clave secreta en .env
     const token = jwt.sign({ usuario: user.nombre, rol: user.rol }, process.env.SECRET_KEY)
@@ -46,17 +46,12 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
     res.locals.usuario = user.nombre           // info para las plantillas en el response
     res.locals.rol = user.rol           // info para las plantillas en el response
 
-    //Consultar juegos que tengan en su nombre la palabra buscada
-    const juegos = await prisma.juego.findMany({
-
-    })
-
     // pone la cookie con el jwt	
     res.cookie('access_token', token, {
       httpOnly: true,                          // Evita acceso desde JavaScript del cliente
       secure: process.env.IN === 'production', // En producción aseguramos HTTPS
       maxAge: 7200000                          // 2 horas en milisegundos
-    }).render('index.njk', { juegos }) // Redirige a la ruta que renderiza los juegos
+    }).redirect('/') // Redirige a la ruta que renderiza los juegos
   }
   catch (err) {
     console.error(err)

@@ -11,14 +11,14 @@ router.get('/buscar', async (req, res) => {
     //Consultar juegos que tengan en su nombre la palabra buscada
     const juegos = await prisma.juego.findMany({
       where: {
-        descripcion: {
+        description: {
           search: busqueda,
           mode: 'insensitive', // Default value: default
         }
       },
       orderBy: {
         _relevance: {
-          fields: ['name', 'descripcion'],
+          fields: ['name', 'description'],
           search: busqueda,
           sort: 'desc',
         }
