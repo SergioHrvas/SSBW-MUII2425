@@ -49,9 +49,24 @@ app.get('/hola', (req, res) => {          // test para el servidor
 
 // Página principal (lista de juegos)
 app.get('/', async (req, res) => {
-	const juegos = await prisma.juego.findMany()
+	const page = parseInt(req.query.page) || 1; // Página actual (default 1)
+	const limit = 18; // Número de juegos por página
+	const offset = (page - 1) * limit; // Offset para la consulta
+	const totalJuegos = await prisma.juego.count(); // Total de juegos en la base de datos
+
+	const totalPaginas = Math.ceil(totalJuegos / limit); // Total de páginas
+	const juegos = await prisma.juego.findMany(
+		{
+			skip: offset,
+			take: limit,
+			orderBy: {
+				id: 'asc'
+			},
+		
+		}
+	)
 	try {
-		res.render("index.njk", { juegos })
+		res.render("index.njk", { juegos, page, totalPaginas, totalJuegos })
 	}
 	catch (err) {
 		console.error(err)

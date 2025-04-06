@@ -18,8 +18,11 @@ model Juego {
   id          Int    @id @default(autoincrement())
   name        String
   img         String
-  descripcion String
+  description String
   score       Int
+  date       DateTime @default(now())
+  companies   String
+  genres      String
 }
 
 // Modelo de usuario

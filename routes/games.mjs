@@ -43,7 +43,10 @@ router.get('/game/:id', async (req, res) => {
       }
     })
 
-    res.render("game.njk", { juego })
+    res.render("game.njk", {   juego: {
+      ...juego,
+      fechaFormateada: new Date(juego.date).toLocaleDateString('es-ES')
+    } })
   }
   catch (err) {
     console.error(err)

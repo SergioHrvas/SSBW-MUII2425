@@ -36,6 +36,42 @@
             </div>
           </div>
         {% endfor %}
+
+        {% if juegos.length == 0 %}
+          <div class="column is-12">
+            <div class="notification is-danger">
+              <button class="delete"></button>
+              No se encontraron juegos.
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Pagination -->
+        <div class="container">
+        <div class="columns is-centered">
+          {% if page > 1 %}
+          <div class="column is-narrow">
+            <a href="?page={{ page - 1 }}" class="button" {% if page <= 1 %}disabled{% endif %}>
+              &larr; Anterior
+            </a>
+          </div>
+          {% endif %}
+            <div class="column is-narrow has-text-centered is-flex is-align-items-center">
+            Página {{ page }} de {{ totalPaginas }}
+            </div>
+          {% if page < totalPaginas %}
+          <div class="column is-narrow">
+            <a href="?page={{ page + 1 }}" class="button" {% if page >= totalPaginas %}disabled{% endif %}>
+              Siguiente &rarr;
+            </a>
+          </div>
+          {% endif %}
+        </div>
+  </div>
+        <!-- End Pagination -->
+
+
+
       </div>
     </div>
   </div>

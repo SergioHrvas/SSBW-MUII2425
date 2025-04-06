@@ -15,7 +15,7 @@ function toSlug(filename) {
 
 const juegos = leer_desde('./info_juegos.json')
 
-juegos.forEach(async ({ img, name, descripcion, score }) => {
+juegos.forEach(async ({ img, name, description, score, genres, companies, date }) => {
 
     const url = img;
     const fileName = toSlug(url.split("/").pop());
@@ -25,14 +25,21 @@ juegos.forEach(async ({ img, name, descripcion, score }) => {
         let writer = createWriteStream(`./public/img/${fileName}`);
         Readable.fromWeb(resp.body).pipe(writer);
     }
+    const [day, month, year] = date.split('/');
+
+    const genresString = genres.join(', ')
+    const companiesString = companies.join(', ')
 
     // guardar en la BD los datos
     prisma.juego.create({
         data: {
             name,
-            descripcion,
+            description,
             score,
-            img: fileName
+            img: fileName,
+            genres: genresString,
+            companies: companiesString,
+            date: new Date(`${year}-${month}-${day}`)
         }
     }).then(() => {
         console.log('Juego guardado')

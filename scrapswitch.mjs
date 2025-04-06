@@ -4,33 +4,45 @@ import * as fs from 'fs';
 const browser = await chromium.launch()
 const page = await browser.newPage()
 
-// lista de páginas con enlaces a 'obras-singulares'
-const obras_singulares = [
-  "https://www.mobygames.com/platform/switch/"
+// lista de páginas con enlaces a 'juegos'
+const juegos_pages = [
+  "https://www.mobygames.com/platform/switch/",
+  "https://www.mobygames.com/platform/switch/page:1/",
+  "https://www.mobygames.com/platform/switch/page:2/",
+  "https://www.mobygames.com/platform/switch/page:3/",
 ]
 
-
-const enlaces_de_obras_singulares = []
+const enlaces_de_juegos = []
 const lista_info_para_BD = []
 
-for (const pag of obras_singulares) {
+// Recuperamos los enlaces de cada página y los guardamos en un array
+for (const pag of juegos_pages) {
   const urls = await Recupera_urls_de(pag)
-  enlaces_de_obras_singulares.push(...urls)  // ... operador spread ES6
+  enlaces_de_juegos.push(...urls)  // ... operador spread ES6
 }
-console.log("🚀 Hay ", enlaces_de_obras_singulares.length, ' páginas con juegos')
+
+console.log("🚀 Hay ", enlaces_de_juegos.length, ' páginas con juegos')
 
 var i = 0
-for (const url of enlaces_de_obras_singulares) {
-  const info_obra = await Recupera_info_de(url)
+for (const url of enlaces_de_juegos) {
+  const info_juego = await Recupera_info_de(url)
   i++
-  console.log(i + "/" + enlaces_de_obras_singulares.length + " (" + info_obra.name + ")")
-  lista_info_para_BD.push(info_obra)
+  console.log(i + "/" + enlaces_de_juegos.length + " (" + info_juego.name + ")")
+  lista_info_para_BD.push(info_juego)
 }
 
 Guarda_en_disco('info_juegos.json', lista_info_para_BD)
 
 await browser.close();
 
+
+/** 
+  *
+  * Funciones
+  *
+**/
+
+// Recupera los enlaces de cada página
 async function Recupera_urls_de(pag) {
   const pags = []
   await page.goto(pag);
@@ -41,6 +53,7 @@ async function Recupera_urls_de(pag) {
   return pags
 }
 
+// Recupera la información de cada juego
 async function Recupera_info_de(url) {
 
   await page.goto(url);
@@ -69,9 +82,45 @@ async function Recupera_info_de(url) {
   }
 
 
-
+  //Sacamos la puntuación
   var scoreLocator = page.locator('.mobyscore')
   var score = await scoreLocator.first().innerText() * 10
+
+
+  // Sacamos la fecha de lanzamiento
+  const dateContainer = page.locator('dt:has-text("Released") + dd');
+  const dateText = await dateContainer.locator('a').first().innerText();
+
+  // Convertir la fecha al formato español
+  // Formato: "DD/MM/YYYY"
+  const fecha = new Date(dateText);
+  const fechaFormateada = fecha.toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric'
+  });
+
+
+
+  //Sacamos la compañía
+  var companyLocator = page.locator('dt:has-text("Developers") + dd')
+  var company = await companyLocator.allTextContents()
+
+  // Limpiar los textos (eliminar espacios en blanco)
+  const cleanedCompany = company.map(comp => comp.trim());
+
+
+
+  // Extraer los géneros
+  // Localizar el contenedor de géneros
+  const genreContainer = page.locator('dt:has-text("Genre") + dd');
+
+  // Extraer todos los textos de los enlaces de géneros
+  const genres = await genreContainer.locator('a').allTextContents();
+
+  // Limpiar los textos (eliminar espacios en blanco)
+  const cleanedGenres = genres.map(genre => genre.trim());
+
 
 
   //Sacamos la imagen
@@ -84,20 +133,23 @@ async function Recupera_info_de(url) {
   var img = await imgLocator.first().getAttribute('src')
 
 
+
   //Generamos JSON
   var json_data = {
     name,
     img,
     descripcion,
-    score
+    score,
+    date: fechaFormateada,
+    companies: cleanedCompany,
+    genres: cleanedGenres
   }
   return json_data;
 }
 
+// Guarda la lista de juegos en disco
 function Guarda_en_disco(name, list) {
   fs.writeFile(name, JSON.stringify(list, null, 2), 'utf8', () => {
     console.log(name + " guardado.")
-
   })
-
 }
