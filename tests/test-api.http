@@ -1,0 +1,17 @@
+GET http://localhost:8000/api/usuario/user@example.com
+				
+###          
+				
+GET http://localhost:8000/api/juego/cuantos
+
+###
+
+GET http://localhost:8000/api/juego/1
+
+###
+
+DELETE http://localhost:8000/api/juego/200
+
+###
+
+GET http://localhost:8000/api/juego/?desde=0&hasta=10

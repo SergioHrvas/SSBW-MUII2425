@@ -16,7 +16,7 @@
 
         <!-- Información del juego -->
         <div class="column is-7">
-          <div class="box" style="border-radius: 10px; background: linear-gradient(135deg, #ff4554,rgb(181, 0, 15)); color: white; padding: 30px;">
+          <div class="box game-box">
             <h1 class="title has-text-white">{{ juego.nombre }}</h1>
 
             <!-- Sección de detalles en filas -->
@@ -24,7 +24,7 @@
 
               <!-- Fecha de lanzamiento -->
               <div class="column is-12">
-                <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+                <div class="box has-text-centered box-white-round">
                   <p class="has-text-weight-bold">🗓️ Fecha de lanzamiento</p>
                   <p>{{ juego.fechaFormateada }}</p>
                 </div>
@@ -32,7 +32,7 @@
 
               <!-- Puntuación -->
               <div class="column is-12">
-                <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+                <div class="box has-text-centered box-white-round">
                   <p class="has-text-weight-bold">⭐ Puntuación: {{ juego.score }} / 100</p>
                   <progress class="progress is-info" value={{ juego.score }} max="100"></progress>
                 </div>
@@ -40,13 +40,13 @@
 
               <!-- Géneros -->
               <div class="column is-12">
-                <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+                <div class="box has-text-centered box-white-round">
                   <p class="has-text-weight-bold">🎮 Géneros</p>
                   {% set generos = juego
                     .genres
                     .split(',') %}
                   {% for genero in generos %}
-                    <span class="tag" style="background-color: #00c3e3; color: white;">{{ genero }}</span>
+                    <span class="tag field-blue">{{ genero }}</span>
                   {% endfor %}
                 </div>
               </div>
@@ -54,14 +54,14 @@
 
             <!-- Desarrolladores -->
             <div class="column is-12">
-              <div class="box has-text-centered" style="background-color: white; border-radius: 10px;">
+              <div class="box has-text-centered box-white-round">
                 <p class="has-text-weight-bold">👨‍💻 Desarrolladores</p>
                 {% set companies = juego
                   .companies
                   .split(',') %}
 
                 {% for company in companies %}
-                  <span class="tag" style="background-color: #00c3e3; color: white;">{{ company }}</span>
+                  <span class="tag field-blue">{{ company }}</span>
                 {% endfor %}
               </div>
             </div>
@@ -76,16 +76,14 @@
             <!-- Botón -->
             <br>
             <div class="columns is-centered is-vcentered">
-              <a href="{{ juego.url }}" class="button is-fullwidth column is-5" 
-              style="background-color: #ff4554; color: white; font-weight: bold; border-radius: 5px;">
+              <a href="{{ juego.url }}" class="button is-fullwidth column is-5 button-view">
               🎮 Ver en Nintendo eShop
             </a>
 
               <!-- Espacio en medio -->
               <div class="column is-1"></div>
 
-              <a href="{{ juego.url }}" class="button is-fullwidth column is-5" 
-              style="background-color: #989898; color: white; font-weight: bold; border-radius: 5px;">
+              <a href="{{ juego.url }}" class="button is-fullwidth column is-5 button-buy">
               🛒 Añadir al carrito
             </a>
             </div>

@@ -4,6 +4,11 @@ const router = express.Router();
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+/*
+  ==========================
+  Ruta para buscar juegos
+  ==========================
+*/
 router.get('/buscar', async (req, res) => {
   const busqueda = req.query.busqueda
   try {
@@ -13,7 +18,7 @@ router.get('/buscar', async (req, res) => {
       where: {
         description: {
           search: busqueda,
-          mode: 'insensitive', // Default value: default
+          mode: 'insensitive',
         }
       },
       orderBy: {
@@ -28,15 +33,19 @@ router.get('/buscar', async (req, res) => {
     res.render('resultados.njk', { juegos, busqueda })
   } catch (err) {
     console.error(err)
-    res.status(500).send({ err }) // o usar una página de error personalizada
+    res.status(500).send({ err })
   }
 })
 
+/*
+  ==========================
+  Ruta para obtener un juego
+  ==========================
+*/
 router.get('/game/:id', async (req, res) => {
   const id = parseInt(req.params.id) // id del juego
 
   try {
-
     const juego = await prisma.juego.findUnique({
       where: {
         id: id
@@ -50,7 +59,7 @@ router.get('/game/:id', async (req, res) => {
   }
   catch (err) {
     console.error(err)
-    res.status(500).send({ err }) // o usar una página de error personalizada
+    res.status(500).send({ err }) 
   }
 })
 

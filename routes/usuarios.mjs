@@ -8,11 +8,15 @@ const router = express.Router();
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+
 /*
   ==========================
   Ruta para renderizar login
   ==========================
 */
+
+
+
 router.get('/login', (req, res) => {
   res.render('login.njk')
 })

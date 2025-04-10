@@ -3,9 +3,12 @@ import express from 'express'
 import nunjucks from 'nunjucks'
 import gamesRouter from "./routes/games.mjs"
 import usersRouter from "./routes/usuarios.mjs"
+import apiRouter from "./routes/api.mjs"
 import { PrismaClient } from '@prisma/client'
 import cookieParser from 'cookie-parser'
 import jwt from "jsonwebtoken"
+import swaggerJsdoc from "swagger-jsdoc"
+import swaggerUi from "swagger-ui-express";
 
 // Configuración de la aplicación web
 const prisma = new PrismaClient()
@@ -42,12 +45,20 @@ const autentificación = (req, res, next) => {
 
 app.use(autentificación)
 
-// Endpoint de prueba)
+/*
+  ==========================
+  Ruta de prueba
+  ==========================
+*/
 app.get('/hola', (req, res) => {          // test para el servidor
 	res.send('Hola desde el servidor');
 });
 
-// Página principal (lista de juegos)
+/*
+  ==========================
+  Ruta raíz (lista de juegos)
+  ==========================
+*/
 app.get('/', async (req, res) => {
 	const page = parseInt(req.query.page) || 1; // Página actual (default 1)
 	const limit = 18; // Número de juegos por página
@@ -74,8 +85,11 @@ app.get('/', async (req, res) => {
 	}
 })
 
-
-// Página de búsqueda
+/*
+  ============================================
+  Ruta para renderizar la página de búsqueda
+  ============================================
+*/
 app.get('/buscar', (req, res) => {
 	res.render("search.njk")
 })
@@ -86,8 +100,50 @@ app.use("/games", gamesRouter);
 // Importamos las rutas de los usuarios
 app.use('/usuarios', usersRouter)
 
+// Importamos las rutas de APIs
+app.use('/api', apiRouter)
+
+
+
+//Configuramos Swagger
+const options = {
+	definition: {
+	  openapi: "3.1.0",
+	  info: {
+		title: "LogRocket Express API with Swagger",
+		version: "0.1.0",
+		description:
+		  "This is a simple CRUD API application made with Express and documented with Swagger",
+		license: {
+		  name: "MIT",
+		  url: "https://spdx.org/licenses/MIT.html",
+		},
+		contact: {
+		  name: "LogRocket",
+		  url: "https://logrocket.com",
+		  email: "info@email.com",
+		},
+	  },
+	  servers: [
+		{
+		  url: "http://localhost:8000",
+		},
+	  ],
+	},
+	apis: ["./routes/api.mjs"],
+  };
+  
+  const specs = swaggerJsdoc(options);
+  app.use(
+	"/api-docs",
+	swaggerUi.serve,
+	swaggerUi.setup(specs)
+  );
+
+
 // Conexión a la base de datos
 const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, () => {
 	console.log(`Servidor ejecutandose en  http://localhost:${PORT} en ${IN}`);
 })
