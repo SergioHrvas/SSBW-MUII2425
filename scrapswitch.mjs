@@ -100,16 +100,12 @@ async function Recupera_info_de(url) {
     year: 'numeric'
   });
 
-
-
   //Sacamos la compañía
   var companyLocator = page.locator('dt:has-text("Developers") + dd')
   var company = await companyLocator.allTextContents()
 
   // Limpiar los textos (eliminar espacios en blanco)
   const cleanedCompany = company.map(comp => comp.trim());
-
-
 
   // Extraer los géneros
   // Localizar el contenedor de géneros
@@ -121,8 +117,6 @@ async function Recupera_info_de(url) {
   // Limpiar los textos (eliminar espacios en blanco)
   const cleanedGenres = genres.map(genre => genre.trim());
 
-
-
   //Sacamos la imagen
   const imageUrlLocator = page.locator('.info-box > div > #cover')
   var imgUrl = await imageUrlLocator.first().getAttribute('href')
@@ -131,8 +125,6 @@ async function Recupera_info_de(url) {
 
   var imgLocator = page.locator('figure > .img-fluid')
   var img = await imgLocator.first().getAttribute('src')
-
-
 
   //Generamos JSON
   var json_data = {
