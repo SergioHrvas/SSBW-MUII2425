@@ -16,7 +16,6 @@ function toSlug(filename) {
 const juegos = leer_desde('./info_juegos.json')
 
 juegos.forEach(async ({ img, name, description, score, genres, companies, date }) => {
-
     const url = img;
     const fileName = toSlug(url.split("/").pop());
     console.log(fileName)

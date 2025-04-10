@@ -1,3 +1,9 @@
+/*
+  SCRAP REALIZADO PARA EL MUSEO ARQUEOLÓGICO.
+  SE HA IMPLEMENTADO PERO NO SE USA EN LA WEB PORQUE SE HA COGIDO OTRA TEMÁTICA.
+  PARA VER EL SCRAPPING DE JUEGOS: SCRAPSWITCH.MJS
+*/
+
 import { chromium } from "playwright"  // o el que sea
 import * as fs from 'fs';
 
