@@ -14,9 +14,6 @@ const prisma = new PrismaClient()
   Ruta para renderizar login
   ==========================
 */
-
-
-
 router.get('/login', (req, res) => {
   res.render('login.njk')
 })
@@ -58,8 +55,9 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
     }).redirect('/') // Redirige a la ruta que renderiza los juegos
   }
   catch (err) {
+    logger.error(`Error en /usuarios/login/`)
     console.error(err)
-    return res.render('register.njk', { error: "Error interno." })
+    return res.render('login.njk', { error: "Error interno." })
   }
 })
 
@@ -69,10 +67,16 @@ router.post('/login', async (req, res) => {     // viene del formulario de login
   ==========================
 */
 router.get('/logout', (req, res) => {
+  try{
   // eliminar la cookie
   res.locals.usuario = null
   res.locals.rol = null
   res.clearCookie('access_token').render('login.njk') // o donde sea
+  }catch{
+    logger.error(`Error en /usuarios/logout/`)
+    console.error(err)
+    return res.render('error.njk')
+  }
 })
 
 /*
@@ -118,6 +122,7 @@ router.post('/register', async (req, res) => {  // viene del formulario de regis
 
   }
   catch (err) {
+    logger.error(`Error en /usuarios/register/`)
     console.error(err)
     return res.render('register.njk', { error: "Error interno." })
   }

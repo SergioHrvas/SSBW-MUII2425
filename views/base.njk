@@ -64,42 +64,51 @@
             <a class="navbar-item menu" href="/usuarios/login">
               Login
             </a>
+            <a class="navbar-item menu" href="/usuarios/register">
+              Registro
+            </a>
           {% endif %}
-
-        </a>
+          {% if usuario %}
+            <span class="button is-static ml-4 is-ghost is-flex is-align-items-center">
+              <span class="icon">
+                <i class="fas fa-user"></i>
+              </span>
+              <span>{{usuario}}</span>
+            </span>
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
-</nav>
-<!-- END NAV -->
+  </nav>
+  <!-- END NAV -->
 
-{% block contenido %}{% endblock %}
+  {% block contenido %}{% endblock %}
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <div class="soc">
-        <a href="#">
-          <i class="fab fa-github fa-lg"></i>
-        </a>
-        <a href="#">
-          <i class="fab fa-youtube fa-lg"></i>
-        </a>
-        <a href="#">
-          <i class="fab fa-facebook fa-lg"></i>
-        </a>
-        <a href="#">
-          <i class="fab fa-twitter fa-lg"></i>
-        </a>
-      </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <div class="soc">
+          <a href="#">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+          <a href="#">
+            <i class="fab fa-youtube fa-lg"></i>
+          </a>
+          <a href="#">
+            <i class="fab fa-facebook fa-lg"></i>
+          </a>
+          <a href="#">
+            <i class="fab fa-twitter fa-lg"></i>
+          </a>
+        </div>
 
-      <p>
-        <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
+        <p>
+          <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
             The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>

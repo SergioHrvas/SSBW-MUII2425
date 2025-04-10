@@ -32,8 +32,9 @@ router.get('/buscar', async (req, res) => {
 
     res.render('resultados.njk', { juegos, busqueda })
   } catch (err) {
+    logger.error(`Error en /games/buscar`)
     console.error(err)
-    res.status(500).send({ err })
+    res.render("error.njk")
   }
 })
 
@@ -58,6 +59,7 @@ router.get('/game/:id', async (req, res) => {
     } })
   }
   catch (err) {
+    logger.error(`Error en /games/game/${id}`)
     console.error(err)
     res.status(500).send({ err }) 
   }

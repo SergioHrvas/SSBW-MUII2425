@@ -1,0 +1,30 @@
+{% extends "base.njk" %}
+
+{% block contenido %}
+<div class="container">
+  <div class="section">
+    <div class="columns is-centered is-vcentered is-mobile" style="min-height: 70vh;">
+      <div class="column is-half-desktop is-three-quarters-tablet is-full-mobile has-text-centered">
+        <div class="notification is-danger is-light">
+          <p class="title is-4 has-text-weight-bold">
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+              <span>¡Ups! Ha ocurrido un error</span>
+            </span>
+          </p>
+          <p class="subtitle is-5 mt-4">Disculpa las molestias. Estamos trabajando para solucionarlo.</p>
+          
+          <div class="box mt-6" style="box-shadow: 0 2px 15px rgba(0,0,0,0.1);">
+            <figure class="image is-256x256 mx-auto">
+              <img src="/img/switchrota.png" alt="Error illustration" class="is-rounded" style="border: 3px solid #f5f5f5;">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

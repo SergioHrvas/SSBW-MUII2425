@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser'
 import jwt from "jsonwebtoken"
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express";
+import logger from "./logger.mjs"
 
 // Configuración de la aplicación web
 const prisma = new PrismaClient()
@@ -20,7 +21,7 @@ app.use(cookieParser()) // para
 app.use(express.urlencoded({ extended: true })) // para recibir formularios
 app.use(express.static('public')) // para recibir archivos estáticos
 
-nunjucks.configure('views', {             // directorio 'views' para las plantillas html
+const env = nunjucks.configure('views', {             // directorio 'views' para las plantillas html
 	autoescape: true,
 	noCache: IN === 'development',       // true para desarrollo, sin cache
 	watch: IN === 'development',       // reinicio con Ctrl-S
@@ -37,8 +38,9 @@ const autentificación = (req, res, next) => {
 		const data = jwt.verify(token, process.env.SECRET_KEY);
 		req.usuario = data.usuario   // en el request
 		req.rol = data.rol
-		res.locals.usuario = data.usuario   // en el response para
+		res.locals.usuario = data.usuario  
 		res.locals.rol = data.rol       // para que se tenga acceso en las plantillas
+		console.log('En el request ', req.usuario, req.rol)
 	}
 	next()
 }
@@ -51,7 +53,7 @@ app.use(autentificación)
   ==========================
 */
 app.get('/hola', (req, res) => {          // test para el servidor
-	res.send('Hola desde el servidor');
+	res.send('Holaa desde el servidor');
 });
 
 /*
@@ -60,24 +62,43 @@ app.get('/hola', (req, res) => {          // test para el servidor
   ==========================
 */
 app.get('/', async (req, res) => {
-	const page = parseInt(req.query.page) || 1; // Página actual (default 1)
-	const limit = 18; // Número de juegos por página
-	const offset = (page - 1) * limit; // Offset para la consulta
-	const totalJuegos = await prisma.juego.count(); // Total de juegos en la base de datos
-
-	const totalPaginas = Math.ceil(totalJuegos / limit); // Total de páginas
-	const juegos = await prisma.juego.findMany(
-		{
-			skip: offset,
-			take: limit,
-			orderBy: {
-				id: 'asc'
-			},
-		
-		}
-	)
 	try {
+		const page = parseInt(req.query.page) || 1; // Página actual (default 1)
+		const limit = 18; // Número de juegos por página
+		const offset = (page - 1) * limit; // Offset para la consulta
+		const totalJuegos = await prisma.juego.count(); // Total de juegos en la base de datos
+	
+		const totalPaginas = Math.ceil(totalJuegos / limit); // Total de páginas
+		const juegos = await prisma.juego.findMany(
+			{
+				skip: offset,
+				take: limit,
+				orderBy: {
+					id: 'asc'
+				},
+			
+			}
+		)
 		res.render("index.njk", { juegos, page, totalPaginas, totalJuegos })
+	}
+	catch (err) {
+		logger.error(`Error en /`)
+
+		console.error(err)
+		res.status(500).send({ err })
+	}
+})
+
+
+/*
+  ============================================
+  Ruta para renderizar la página de error (prueba)
+  ============================================
+*/
+app.get('/error', async (req, res) => {
+	try {
+		logger.error(`Error de ruta`)
+		res.render("error.njk")
 	}
 	catch (err) {
 		console.error(err)
@@ -102,8 +123,6 @@ app.use('/usuarios', usersRouter)
 
 // Importamos las rutas de APIs
 app.use('/api', apiRouter)
-
-
 
 //Configuramos Swagger
 const options = {
@@ -140,6 +159,27 @@ const options = {
 	swaggerUi.setup(specs)
   );
 
+/** 
+ * =================
+ * Manejo de errores
+ * =================
+ */ 
+// Middleware para manejar 404
+app.use((req, res, next) => {
+	logger.error(`Error de ruta`)
+
+	res.status(404).render('error.njk');
+  });
+  
+// Errores internos
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	logger.error(`Error de ruta`)
+
+	res.status(500).render('error.njk');
+});
+
+  
 
 // Conexión a la base de datos
 const PORT = process.env.PORT || 8000;
