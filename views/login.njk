@@ -14,22 +14,35 @@
 
       <form action="/usuarios/login" method="POST">
         <div class="field">
-          <label for="correo" class="label">Correo</label>
+          <label id="labelemail" for="correo" class="label">Correo</label>
           <div class="control has-icons-left">
-            <input type="text" id="correo" name="correo" class="input" placeholder="Tu correo" required>
+            <input type="email" id="correo" placeholder="ejemplo@correo.com" name="correo" class="input" required autofocus>
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
           </div>
+          <span class="help is-danger" id="errorEmail">
+            <i id="exc" class="fas fa-exclamation-triangle"></i>
+            <span id="errorEmailText">El usuario no existe</span> 
+          </span>
+
         </div>
         <div class="field">
-          <label for="password" class="label">Contraseña</label>
-          <div class="control has-icons-left">
+          <label id="labelpassword" for="password" class="label">Contraseña</label>
+          <div class="control has-icons-left has-icons-right">
             <input type="password" id="password" name="password" class="input" placeholder="Tu contraseña" required>
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
+            <span class="icon is-small is-right">
+              <i id="eye" class="fas fa-eye"></i>
+            </span>
           </div>
+          <span class="help is-danger" id="errorPassword">
+            <i id="exc" class="fas fa-exclamation-triangle"></i>
+            <span id="errorPasswordText">La contraseña es incorrecta</span> 
+          </span>
+
         </div>
         <div class="field mb-6">
           <button type="submit" id="login" class="button buttonDefault is-primary is-fullwidth">Acceder</button>
@@ -50,5 +63,5 @@
     </div>
 
   </div>
-
+<script src="/scripts/login.js"></script>
 {% endblock %}

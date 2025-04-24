@@ -35,7 +35,7 @@ Aplicación web moderna para explorar videojuegos de Nintendo Switch con:
 
 ### 🛡 Página de Error
 - Diseño amigable para usuarios
-- Logging de errores en servidor
+- Logging de errores en servidor (rotatorio)
 
 ### 📊 API Documentada
 - Especificación OpenAPI 3.0

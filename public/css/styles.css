@@ -149,3 +149,17 @@ body {
   color: white;
   padding: 30px;
 }
+
+#eye{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  z-index: 1;
+  color: #00c3e3 !important;
+}
+
+#labelpassword, #labelemail{
+  cursor: pointer;
+}
