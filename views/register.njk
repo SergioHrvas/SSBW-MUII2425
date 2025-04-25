@@ -15,34 +15,46 @@
 
             <form class="mb-4" action="/usuarios/register" method="POST">
                 <div class="field">
-                    <label for="nombre" class="label">Nombre de usuario</label>
+                    <label id="labelusername" for="nombre" class="label">Nombre de usuario</label>
                     <div class="control has-icons-left">
-                        <input type="text" id="nombre" name="nombre" class="input" placeholder="Tu nombre de usuario" required>
+                        <input type="text" id="nombre" name="nombre" class="input" placeholder="Tu nombre de usuario" required autofocus>
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"a></i>
                         </span>
                     </div>
                 </div>
                 <div class="field">
-                    <label for="correo" class="label">Correo</label>
-                    <div class="control has-icons-left">
-                        <input type="text" id="correo" name="correo" class="input" placeholder="Tu correo" required>
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                    </div>
+                <label id="labelemail" for="correo" class="label">Correo</label>
+                <div class="control has-icons-left">
+                    <input type="email" id="correo" placeholder="ejemplo@correo.com" name="correo" class="input" required>
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                <span class="help is-danger" id="errorEmail">
+                    <i id="exc" class="fas fa-exclamation-triangle"></i>
+                    <span id="errorEmailText">El correo es incorrecto</span> 
+                </span>
+
                 </div>
                 <div class="field">
-                    <label for="password" class="label">Contraseña</label>
-                    <div class="control has-icons-left">
+                    <label id="labelpassword" for="password" class="label">Contraseña</label>
+                    <div class="control has-icons-left has-icons-right">
                         <input type="password" id="password" name="password" class="input" placeholder="Tu contraseña" required>
                         <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
+                        <i class="fas fa-lock"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                        <i id="eye" class="fas fa-eye"></i>
                         </span>
                     </div>
+                    <span class="help is-danger" id="errorPassword">
+                        <i id="exc" class="fas fa-exclamation-triangle"></i>
+                        <span id="errorPasswordText">La contraseña es incorrecta</span> 
+                    </span>
                 </div>
                 <div class="field">
-                    <button type="submit" class="button is-primary is-fullwidth buttonDefault">Continuar</button>
+                    <button type="submit" class="button is-primary is-fullwidth buttonDefault">Registrar</button>
                 </div>
             </form>
 
@@ -52,7 +64,7 @@
                 </p>
             </div>
         </div>
-
     </div>
+<script src="/scripts/register.js"></script>
 
 {% endblock %}

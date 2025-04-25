@@ -160,6 +160,6 @@ body {
   color: #00c3e3 !important;
 }
 
-#labelpassword, #labelemail{
+#labelpassword, #labelemail, #labelusername{
   cursor: pointer;
 }
