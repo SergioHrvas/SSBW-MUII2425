@@ -1,20 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 
+  //VERSION SIN COMPONENTES Y SIN TAILWIND (TAREA 9)
+
 function App() {
-  const [count, setCount] = useState(0)
-
   let number = Math.floor(Math.random() * 10) + 1
-  
-  console.log(number + " es el número a adivinar")
-
-  
-  //numero de estado
+    
   let numero = 0
 
   function handleAcierto() {

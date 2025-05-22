@@ -56,15 +56,10 @@ function AlertaComponent({ aparece }: { aparece: number }) {
 
   const numero_secreto = Math.floor(Math.random() * 10)
 
-
+  //VERSION CON COMPONENTES Y CON TAILWIND (TAREA 10)
 function App() {
   const [alerta, setAlerta] = useState(0)
 
-
-
-  function handleClick(evt: React.ChangeEvent<HTMLInputElement>) {
-
-  }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value

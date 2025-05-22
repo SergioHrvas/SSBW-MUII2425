@@ -454,7 +454,7 @@ router.get('/juego', async (req, res) => {
 
     try {
 
-        logger.debug(`------------------------- GET JUEGO ${min} to ${max}`)
+        logger.debug(`------------------------- GET JUEGO ${min} hasta ${max}`)
     
         const juegos = await prisma.juego.findMany(
             {
@@ -463,8 +463,19 @@ router.get('/juego', async (req, res) => {
             }
         )
 
+        const num_juegos = await prisma.juego.count()
+
+
+        const data = {
+            juegos: juegos,
+            total: num_juegos,
+            total_page: await prisma.juego.count(),
+            pages: Math.ceil(await prisma.juego.count() / (max - min))
+        }
+        
+
         if (juegos.length > 0) {
-            res.status(200).json({ok:true, data: juegos})
+            res.status(200).json({ok:true, data: data})
         } else {
             res.status(404).json({ok:false, msg:`Juegos not found`})
         }

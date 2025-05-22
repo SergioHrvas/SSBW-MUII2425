@@ -10,11 +10,14 @@ import jwt from "jsonwebtoken"
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express";
 import logger from "./logger.mjs"
+import cors from 'cors'
 
 // Configuración de la aplicación web
 const prisma = new PrismaClient()
 const IN = process.env.IN || 'development' // development o production
 const app = express()
+
+app.use(cors()) // para permitir el acceso a la API desde otros dominios
 
 app.use(express.json()) // para recibir json
 app.use(cookieParser()) // para 
