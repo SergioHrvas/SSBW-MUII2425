@@ -11,10 +11,13 @@ import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express";
 import logger from "./logger.mjs"
 import cors from 'cors'
+import dotenv from 'dotenv';
+
+const environment = process.env.NODE_ENV || 'development';
+dotenv.config({ path: `.env.${environment}` });
 
 // Configuración de la aplicación web
 const prisma = new PrismaClient()
-const IN = process.env.IN || 'development' // development o production
 const app = express()
 
 app.use(cors()) // para permitir el acceso a la API desde otros dominios
@@ -26,12 +29,11 @@ app.use(express.static('public')) // para recibir archivos estáticos
 
 const env = nunjucks.configure('views', {             // directorio 'views' para las plantillas html
 	autoescape: true,
-	noCache: IN === 'development',       // true para desarrollo, sin cache
-	watch: IN === 'development',       // reinicio con Ctrl-S
+	noCache: environment === 'development',       // true para desarrollo, sin cache
+	watch: environment === 'development',       // reinicio con Ctrl-S
 	express: app
 })
 
-app.use(express.static('public'))
 app.set('view engine', 'html')
 
 // Middleware de autenticación
@@ -188,5 +190,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
-	console.log(`Servidor ejecutandose en  http://localhost:${PORT} en ${IN}`);
+	console.log(`Servidor ejecutándose en http://localhost:${PORT} [${environment}]`);
 })
