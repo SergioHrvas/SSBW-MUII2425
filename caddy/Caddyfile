@@ -1,26 +1,32 @@
+# :80 {
+#     # Rutas estáticas servidas por Caddy
+#     handle /img/* {
+#         root * /usr/share/caddy/public
+#         file_server
+#     }
+# 
+#     handle /scripts/* {
+#         root * /usr/share/caddy/public
+#         file_server
+#     }
+# 
+#     handle /css/* {
+#         root * /usr/share/caddy/public
+#         file_server
+#     }
+# 
+#     reverse_proxy switchers:8000
+# }
+
+
+# Para astro
 :80 {
-    # Rutas estáticas servidas por Caddy
-    handle /img/* {
-        root * /usr/share/caddy/public
-        file_server
-    }
-
-    handle /scripts/* {
-        root * /usr/share/caddy/public
-        file_server
-    }
-
-    handle /css/* {
-        root * /usr/share/caddy/public
-        file_server
-    }
-
-    reverse_proxy switchers:8000
+    reverse_proxy astro:4321
 }
 
 # Para el index.html
 # :80 {
-    # root * /usr/share/caddy
-    # file_server
-    # try_files {path} /index.html
+#     root * /usr/share/caddy
+#     file_server
+#     try_files {path} /index.html
 # }

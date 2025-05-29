@@ -34,3 +34,11 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./caddy/dist:/usr/share/caddy
       - ./caddy/public:/usr/share/caddy/public
+
+# Para Astro como SSR 
+  astro:
+    build: ./astro-app
+    ports:
+      - 4321:4321
+    environment:
+      - NODE_ENV=production
